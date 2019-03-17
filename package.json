@@ -1,0 +1,11 @@
+{
+  "name": "webpage",
+  "version": "1.0.0",
+  "description": "Front-end Project for My Website",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "me@zhangrichard.com",
+  "license": "MIT"
+}
