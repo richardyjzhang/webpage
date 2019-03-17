@@ -4,12 +4,16 @@
   "description": "Front-end Project for My Website",
   "main": "index.js",
   "scripts": {
+    "start": "webpack-dev-server --config ./webpack.config.js --mode development",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "me@zhangrichard.com",
   "license": "MIT",
   "devDependencies": {
     "eslint": "^5.15.2",
-    "eslint-plugin-react": "^7.12.4"
+    "eslint-plugin-react": "^7.12.4",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.3.0",
+    "webpack-dev-server": "^3.2.1"
   }
 }
