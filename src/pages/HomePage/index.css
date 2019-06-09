@@ -1,12 +1,18 @@
 .homePageRoot {
   width: 100%;
   height: 100vh;
-  background-color: #4456a7;
+  background-color: #02a2fd;
+}
+
+.imgContainer {
+  max-height: 80%;
+  overflow: hidden;
 }
 
 .bgImage {
-  max-width: 100%;
-  max-height: 100%;
+  display: block;
+  max-height: inherit;
+  max-width: inherit;
   top: 50%;
   left: 50%;
   position: absolute;

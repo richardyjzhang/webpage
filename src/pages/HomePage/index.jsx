@@ -8,7 +8,9 @@ class HomePage extends React.Component {
     return (
       <div className={styles.homePageRoot}>
         <Header />
-        <img className={styles.bgImage} src='background.jpg' alt='' />
+        <div className={styles.imgContainer}>
+          <img className={styles.bgImage} src='background.jpg' alt='' />
+        </div>
       </div>
     );
   }
