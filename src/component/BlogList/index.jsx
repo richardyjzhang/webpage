@@ -46,7 +46,6 @@ class BlogList extends React.Component {
         split={false}
         dataSource={blogList}
         renderItem={this.renderItem}
-        pagination={this.makePaginationConfig()}
       />
     );
   }
