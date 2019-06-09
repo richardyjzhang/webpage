@@ -5,12 +5,12 @@ export default {
   plugins: [
     // ref: https://umijs.org/plugin/umi-plugin-react.html
     ['umi-plugin-react', {
-      antd: false,
+      antd: true,
       dva: true,
       dynamicImport: false,
       title: 'webpage',
       dll: false,
-      
+
       routes: {
         exclude: [
           /models\//,
