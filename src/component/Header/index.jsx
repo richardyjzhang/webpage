@@ -1,4 +1,5 @@
 import React from 'react';
+import router from 'umi/router';
 import styles from './index.css';
 
 class Header extends React.Component {
@@ -7,13 +8,13 @@ class Header extends React.Component {
     super();
     this.nav = [
       { text: 'HOME', href: '/' },
-      { text: 'BLOG', href: '/' },
+      { text: 'BLOG', href: '/CatalogPage' },
       { text: 'ABOUT', href: '/' },
     ];
   }
 
   toLink = nav => {
-    console.log(nav);
+    router.push(nav.href);
   };
 
   render() {
