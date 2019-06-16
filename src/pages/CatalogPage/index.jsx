@@ -1,5 +1,6 @@
 import React from 'react';
 import { Row, Col } from 'antd';
+import { connect } from 'dva';
 
 import BlogList from '../../component/BlogList';
 import BlogDetail from '../../component/BlogDetail';
@@ -7,6 +8,14 @@ import BlogDetail from '../../component/BlogDetail';
 import styles from './index.css';
 
 class CatalogPage extends React.Component {
+
+  componentDidMount() {
+    const { dispatch } = this.props;
+    dispatch({
+      type: 'BlogModel/fetchBlogList',
+      payload: {},
+    });
+  }
 
   render() {
 
@@ -25,4 +34,5 @@ class CatalogPage extends React.Component {
   }
 }
 
-export default CatalogPage;
+export default connect(({ BlogModel }) => (
+  { BlogModel }))(CatalogPage);

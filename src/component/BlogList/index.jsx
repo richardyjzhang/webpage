@@ -30,21 +30,21 @@ class BlogList extends React.Component {
 
   // 分页配置
   makePaginationConfig = () => {
-    const { BlogModel: { blogList } } = this.props;
+    const { BlogModel: { blogListData } } = this.props;
     return ({
       size: "small",
-      total: blogList.length,
+      total: blogListData.length,
       defaultPageSize: 5,
     });
   };
 
   render() {
-    const { BlogModel: { blogList } } = this.props;
+    const { BlogModel: { blogListData } } = this.props;
     return (
       <List
         className={styles.blogListContainer}
         split={false}
-        dataSource={blogList}
+        dataSource={blogListData}
         renderItem={this.renderItem}
       />
     );
