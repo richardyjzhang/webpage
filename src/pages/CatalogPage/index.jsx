@@ -8,6 +8,12 @@ import BlogDetail from '../../component/BlogDetail';
 import styles from './index.css';
 
 class CatalogPage extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      selectedBlogID: 0,
+    };
+  }
 
   componentDidMount() {
     const { dispatch } = this.props;
@@ -17,7 +23,22 @@ class CatalogPage extends React.Component {
     });
   }
 
+  componentWillReceiveProps(nextProps) {
+    const { BlogModel: { blogListData } } = this.props;
+    const { BlogModel: { blogListData: newBlogListData } } = nextProps;
+    if (blogListData.length === newBlogListData.length) {
+      return
+    }
+    if (newBlogListData.length <= 0) {
+      return
+    }
+    this.setState({
+      selectedBlogID: newBlogListData[0].id,
+    });
+  }
+
   render() {
+    const { selectedBlogID } = this.state;
 
     return (
       <div className={styles.mainContainer}>
@@ -26,7 +47,7 @@ class CatalogPage extends React.Component {
             <BlogList />
           </Col>
           <Col span={16}>
-            <BlogDetail />
+            <BlogDetail blogID={selectedBlogID} />
           </Col>
         </Row>
       </div>

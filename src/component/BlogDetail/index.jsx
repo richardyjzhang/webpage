@@ -5,14 +5,40 @@ import styles from './index.css';
 
 class BlogDetail extends React.Component {
 
+  componentWillReceiveProps(nextProps) {
+    const { dispatch, blogID } = this.props;
+    const { blogID: newBlogID } = nextProps;
+    if (blogID !== newBlogID && newBlogID !== 0) {
+      dispatch({
+        type: 'BlogModel/fetchOneBlogInfo',
+        payload: {
+          blogID: newBlogID,
+        },
+      });
+      dispatch({
+        type: 'BlogModel/fetchOneBlogContent',
+        payload: {
+          blogID: newBlogID,
+        },
+      });
+    }
+  }
+
   render() {
-    const markdown = `# This is a header`;
+    const { blogID,
+      BlogModel: { blogInfoData, blogContentData } } = this.props;
+    const { content } = blogContentData;
+
+    if (0 === blogID) {
+      return null;
+    }
+
     return (
       <div className={styles.blogContainer}>
-        <h2>文章标题</h2>
-        <span>日期</span>
+        <h2>{blogInfoData.title}</h2>
+        <span>{blogInfoData.date}</span>
         <div className={styles.mdContainer}>
-          <ReactMarkdown source={markdown} />
+          <ReactMarkdown source={content} />
         </div>
       </div>
     );
