@@ -9,7 +9,7 @@ const getByEnv = () => {
       break;
     }
     case 'prod': {
-      url = 'http://www.zhangrichard.com/api/v1/';
+      url = 'https://www.zhangrichard.com/api/v1/';
       break;
     }
     default: {
