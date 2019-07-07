@@ -7,13 +7,13 @@ interface NavItem {
   href: string;
 }
 interface IButtonProps {
-  index: number;
+  key: number;
   navItem: NavItem;
 }
 
 class HeaderButton extends React.Component<IButtonProps> {
 
-  onClick() {
+  onClick = () => {
     router.push(this.props.navItem.href);
   }
 
@@ -21,7 +21,7 @@ class HeaderButton extends React.Component<IButtonProps> {
     return (
       <button
         className={styles.navButton}
-        key={this.props.index}
+        key={this.props.key}
         onClick={this.onClick}
       >
         {this.props.navItem.text}
@@ -39,9 +39,10 @@ class Header extends React.PureComponent {
   ];
 
   makeButtons(): any {
-    return Header.navItems.map((navItem: NavItem, index: number) => {
-      (<HeaderButton index={index} navItem={navItem} />)
+    const buttons = Header.navItems.map((navItem: NavItem, index: number) => {
+      return <HeaderButton key={index} navItem={navItem} />;
     });
+    return buttons;
   }
 
   render() {
