@@ -1,6 +1,7 @@
+import { IConfig } from 'umi-types';
 
 // ref: https://umijs.org/config/
-export default {
+const config: IConfig =  {
   treeShaking: true,
   plugins: [
     // ref: https://umijs.org/plugin/umi-plugin-react.html
@@ -10,7 +11,7 @@ export default {
       dynamicImport: false,
       title: 'webpage',
       dll: false,
-
+      
       routes: {
         exclude: [
           /models\//,
@@ -22,9 +23,6 @@ export default {
       },
     }],
   ],
-  define: {
-    'process.env.API_ENV': process.env.API_ENV,
-  },
-  history: 'hash',
-  publicPath: './',
 }
+
+export default config;
