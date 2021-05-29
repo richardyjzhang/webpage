@@ -44,6 +44,8 @@
     ]
   },
   "devDependencies": {
-    "@types/react-router-dom": "^5.1.7"
+    "@types/react-router-dom": "^5.1.7",
+    "lint-staged": "^11.0.0",
+    "prettier": "^2.3.0"
   }
 }
