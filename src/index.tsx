@@ -4,12 +4,20 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
 } from "react-router-dom";
+import HomePage from './pages/HomePage';
 
 ReactDOM.render(
   <React.StrictMode>
-    <div>Hello, World!</div>
+    {
+    <Router>
+        <Switch>
+          <Route path="/">
+            <HomePage />
+          </Route>
+        </Switch>
+    </Router>
+    }
   </React.StrictMode>,
   document.getElementById('root')
 );
