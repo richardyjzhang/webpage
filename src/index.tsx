@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
+import LoginPage from "./pages/LoginPage";
 
 const theme = createMuiTheme({
   palette: {
@@ -19,6 +20,9 @@ ReactDOM.render(
       <ThemeProvider theme={theme}>
         <Router>
           <Switch>
+            <Route path="/login">
+              <LoginPage />
+            </Route>
             <Route path="/">
               <HomePage />
             </Route>
