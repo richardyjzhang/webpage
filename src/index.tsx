@@ -9,7 +9,7 @@ import LoginPage from "./pages/LoginPage";
 const theme = createMuiTheme({
   palette: {
     primary: {
-      main: "#ffffff",
+      main: "#5b7050",
     },
   },
 });
