@@ -9,7 +9,7 @@ import {
   Button,
   IconButton,
 } from "@material-ui/core";
-import { ChevronRight, ChevronLeft, CheckRounded } from "@material-ui/icons";
+import { ChevronRight, ChevronLeft } from "@material-ui/icons";
 import clsx from "clsx";
 
 // 左侧抽屉宽度
