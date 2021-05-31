@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FormEvent, useState } from "react";
 import {
   Avatar,
   Button,
@@ -42,6 +42,26 @@ const useStyles = makeStyles((theme: Theme) =>
 const LoginPage = () => {
   const classes = useStyles();
 
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [errors, setErrors] = useState({
+    email: "",
+    password: "",
+  });
+
+  const handleSubmit = (e: FormEvent) => {
+    e.preventDefault();
+    const emailValid = Boolean(email);
+    const passwordValid = Boolean(password);
+    setErrors({
+      email: emailValid ? "" : "Email is required",
+      password: passwordValid ? "" : "Password is required",
+    });
+    if (emailValid && passwordValid) {
+      alert(`Email: ${email}\nPassword: ${password}`);
+    }
+  };
+
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -52,7 +72,7 @@ const LoginPage = () => {
         <Typography component="h1" variant="h5">
           Log in
         </Typography>
-        <form className={classes.form}>
+        <form className={classes.form} noValidate onSubmit={handleSubmit}>
           <TextField
             variant="outlined"
             id="email"
@@ -63,6 +83,11 @@ const LoginPage = () => {
             autoFocus
             autoComplete="email"
             fullWidth
+            error={Boolean(errors.email)}
+            helperText={errors.email}
+            onBlur={(e) => {
+              setEmail(e.target.value);
+            }}
           />
           <TextField
             variant="outlined"
@@ -74,6 +99,11 @@ const LoginPage = () => {
             name="password"
             autoComplete="current-password"
             fullWidth
+            error={Boolean(errors.password)}
+            helperText={errors.password}
+            onBlur={(e) => {
+              setPassword(e.target.value);
+            }}
           />
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
