@@ -6,7 +6,6 @@ import {
   Toolbar,
   CssBaseline,
   Typography,
-  Button,
   IconButton,
 } from "@material-ui/core";
 import { ChevronRight, ChevronLeft } from "@material-ui/icons";
