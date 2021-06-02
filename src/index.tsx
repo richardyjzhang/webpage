@@ -1,10 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import HomePage from "./pages/AdminPage";
 
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import LoginPage from "./pages/LoginPage";
+import BlogPage from "./pages/BlogPage";
+import AdminPage from "./pages/AdminPage";
 
 const theme = createMuiTheme({
   palette: {
@@ -23,8 +24,11 @@ ReactDOM.render(
             <Route path="/login">
               <LoginPage />
             </Route>
+            <Route path="/admin">
+              <AdminPage />
+            </Route>
             <Route path="/">
-              <HomePage />
+              <BlogPage />
             </Route>
           </Switch>
         </Router>
