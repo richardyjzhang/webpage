@@ -56,6 +56,20 @@ const useStyles = makeStyles((theme: Theme) =>
       bottom: theme.spacing(1),
       left: theme.spacing(1),
     },
+    content: {
+      flexGrow: 1,
+      padding: theme.spacing(3),
+      transition: theme.transitions.create(["margin"], {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.leavingScreen,
+      }),
+    },
+    contentShift: {
+      transition: theme.transitions.create(["margin"], {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.leavingScreen,
+      }),
+    },
   })
 );
 
@@ -65,7 +79,7 @@ const HomePage = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
 
   return (
-    <div>
+    <div className={classes.root}>
       <CssBaseline />
       <AppBar className={classes.appBar} position="fixed">
         <Toolbar className={classes.toolBar}>
@@ -85,7 +99,7 @@ const HomePage = () => {
         }}
         variant="permanent"
       >
-        <Toolbar className={classes.toolBar} />
+        <div className={classes.toolBar} />
         <div className={classes.drawerContainer}>
           <IconButton
             className={classes.drawerFooter}
@@ -97,6 +111,14 @@ const HomePage = () => {
           </IconButton>
         </div>
       </Drawer>
+      <main
+        className={clsx(classes.content, {
+          [classes.contentShift]: drawerOpen,
+        })}
+      >
+        <div className={classes.toolBar} />
+        FUCK
+      </main>
     </div>
   );
 };

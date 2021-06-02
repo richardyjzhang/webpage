@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import HomePage from "./pages/HomePage";
+import HomePage from "./pages/AdminPage";
 
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import LoginPage from "./pages/LoginPage";
