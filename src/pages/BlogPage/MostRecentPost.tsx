@@ -39,13 +39,6 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-interface Post {
-  title: string;
-  description: string;
-  image: string;
-  url: string;
-}
-
 const MostRecentPost = () => {
   const classes = useStyles();
 
