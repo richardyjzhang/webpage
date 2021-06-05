@@ -1,15 +1,11 @@
 import React from "react";
-import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import { CssBaseline, Container, Grid } from "@material-ui/core";
 import Header from "./Header";
 import MostRecentPost from "./MostRecentPost";
 import RecentPost from "./RecentPost";
-
-const useStyles = makeStyles((theme: Theme) => createStyles({}));
+import PostList from "./PostList";
 
 const BlogPage = () => {
-  const classes = useStyles();
-
   return (
     <div>
       <CssBaseline />
@@ -25,6 +21,12 @@ const BlogPage = () => {
             <Grid item xs={12} md={6}>
               <RecentPost />
             </Grid>
+          </Grid>
+          <Grid container spacing={5}>
+            <Grid item xs={12} md={8}>
+              <PostList />
+            </Grid>
+            <Grid item xs={12} md={4}></Grid>
           </Grid>
         </main>
       </Container>
