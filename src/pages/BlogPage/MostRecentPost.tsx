@@ -46,6 +46,8 @@ const MostRecentPost = () => {
     title: "文章标题 可以比较长 测试换行",
     description:
       "文章描述 可以比较长 测试换行 感觉自己好像梁朝伟在演无间道 捂住脑门晃动你的胯骨轴 好像有事在发愁 Lei jidou ma",
+    author: "宝石GEM",
+    time: "2021-01-02 03:04:05",
     image: "https://source.unsplash.com/random",
     url: "#",
   };
