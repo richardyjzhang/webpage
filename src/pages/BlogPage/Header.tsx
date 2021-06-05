@@ -6,6 +6,7 @@ import {
   Typography,
   Button,
   InputBase,
+  Link,
 } from "@material-ui/core";
 import { Search } from "@material-ui/icons";
 
@@ -59,18 +60,36 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-/*
 const links = [
   {
-    title: "博客",
+    title: "修电脑",
     url: "#",
   },
   {
-    title: "段子",
+    title: "瞎鼓捣",
+    url: "#",
+  },
+  {
+    title: "瞎看书",
+    url: "#",
+  },
+  {
+    title: "瞎合计",
+    url: "#",
+  },
+  {
+    title: "瞎溜达",
+    url: "#",
+  },
+  {
+    title: "拍片儿",
+    url: "#",
+  },
+  {
+    title: "乱七八糟",
     url: "#",
   },
 ];
-*/
 
 const Header = () => {
   const classes = useStyles();
@@ -100,19 +119,17 @@ const Header = () => {
           Log in
         </Button>
       </Toolbar>
-      {/*
-        <Toolbar
-          component="nav"
-          variant="dense"
-          className={classes.toolbarSecondary}
-        >
-          {links.map((link) => (
-            <Link className={classes.toolbarLink} href={link.url}>
-              {link.title}
-            </Link>
-          ))}
-        </Toolbar>
-        */}
+      <Toolbar
+        component="nav"
+        variant="dense"
+        className={classes.toolbarSecondary}
+      >
+        {links.map((link) => (
+          <Link className={classes.toolbarLink} href={link.url}>
+            {link.title}
+          </Link>
+        ))}
+      </Toolbar>
     </div>
   );
 };
