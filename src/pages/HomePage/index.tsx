@@ -4,6 +4,7 @@ import Header from "./Header";
 import MostRecentPost from "./MostRecentPost";
 import RecentPost from "./RecentPost";
 import PostList from "./PostList";
+import Sidebar from "./Sidebar";
 
 const BlogPage = () => {
   return (
@@ -26,7 +27,9 @@ const BlogPage = () => {
             <Grid item xs={12} md={8}>
               <PostList />
             </Grid>
-            <Grid item xs={12} md={4}></Grid>
+            <Grid item xs={12} md={4}>
+              <Sidebar />
+            </Grid>
           </Grid>
         </main>
       </Container>
