@@ -1,8 +1,9 @@
 import React from "react";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
-import { CssBaseline, Container } from "@material-ui/core";
+import { CssBaseline, Container, Grid } from "@material-ui/core";
 import Header from "./Header";
 import MostRecentPost from "./MostRecentPost";
+import RecentPost from "./RecentPost";
 
 const useStyles = makeStyles((theme: Theme) => createStyles({}));
 
@@ -16,6 +17,15 @@ const BlogPage = () => {
         <Header />
         <main>
           <MostRecentPost />
+          {/* TODO: order by time desc */}
+          <Grid container spacing={4}>
+            <Grid item xs={12} md={6}>
+              <RecentPost />
+            </Grid>
+            <Grid item xs={12} md={6}>
+              <RecentPost />
+            </Grid>
+          </Grid>
         </main>
       </Container>
     </div>
