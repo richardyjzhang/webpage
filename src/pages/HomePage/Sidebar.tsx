@@ -5,6 +5,10 @@ import { GitHub, Twitter, Facebook } from "@material-ui/icons";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
+    root: {
+      top: theme.spacing(2),
+      position: "sticky",
+    },
     about: {
       padding: theme.spacing(2),
       backgroundColor: theme.palette.grey[200],
@@ -37,7 +41,7 @@ const Sidebar = () => {
   ];
 
   return (
-    <div>
+    <div className={classes.root}>
       <Paper className={classes.about}>
         <Typography variant="h6" gutterBottom>
           About
