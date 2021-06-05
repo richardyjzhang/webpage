@@ -104,7 +104,7 @@ const Header = () => {
           color="inherit"
           noWrap
         >
-          FUCK
+          网站名称
         </Typography>
         <div className={classes.search}>
           <div className={classes.searchIcon}>
