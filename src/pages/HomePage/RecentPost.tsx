@@ -31,9 +31,8 @@ const RecentPost = () => {
     title: "文章标题",
     description: "文章描述",
     author: "作者",
-    time: "2006-01-02 15:04:05",
-    image: "https://source.unsplash.com/random",
-    url: "#",
+    createTime: "2006-01-02 15:04:05",
+    imagePath: "https://source.unsplash.com/random",
   };
 
   return (
@@ -45,12 +44,12 @@ const RecentPost = () => {
               {post.title}
             </Typography>
             <Typography variant="subtitle1" color="textSecondary">
-              {post.time}
+              {post.createTime}
             </Typography>
             <Typography variant="subtitle1" paragraph>
               {post.description}
             </Typography>
-            <Link variant="subtitle1" href={post.url}>
+            <Link variant="subtitle1" href={"#"}>
               继续阅读
             </Link>
           </CardContent>
@@ -58,7 +57,7 @@ const RecentPost = () => {
         <Hidden xsDown>
           <CardMedia
             className={classes.media}
-            image={post.image}
+            image={post.imagePath}
             title={post.title}
           />
         </Hidden>

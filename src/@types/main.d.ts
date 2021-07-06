@@ -1,8 +1,12 @@
-interface Post {
+declare type Post = {
   title: string;
   description: string;
   author: string;
-  time: string;
-  image: string;
-  url: string;
-}
+  createTime: string;
+  imagePath: string;
+};
+
+declare type author = {
+  id: number;
+  name: string;
+};

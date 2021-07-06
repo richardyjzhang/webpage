@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import { Typography, Link, Paper, Grid } from "@material-ui/core";
+import { PostContext } from "./index";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -42,24 +43,28 @@ const useStyles = makeStyles((theme: Theme) =>
 const MostRecentPost = () => {
   const classes = useStyles();
 
-  const mostRecentPost: Post = {
-    title: "文章标题 可以比较长 测试换行",
-    description:
-      "文章描述 可以比较长 测试换行 感觉自己好像梁朝伟在演无间道 捂住脑门晃动你的胯骨轴 好像有事在发愁 Lei jidou ma",
-    author: "宝石GEM",
-    time: "2021-01-02 03:04:05",
-    image: "https://source.unsplash.com/random",
-    url: "#",
-  };
+  const posts = useContext(PostContext);
+
+  // const mostRecentPost: Post = {
+  //   title: "文章标题 可以比较长 测试换行",
+  //   description:
+  //     "文章描述 可以比较长 测试换行 感觉自己好像梁朝伟在演无间道 捂住脑门晃动你的胯骨轴 好像有事在发愁 Lei jidou ma",
+  //   author: "宝石GEM",
+  //   time: "2021-01-02 03:04:05",
+  //   image: "https://source.unsplash.com/random",
+  //   url: "#",
+  // };
+
+  const mostRecentPost = posts[0];
 
   return (
     <Paper
       className={classes.root}
-      style={{ backgroundImage: `url(${mostRecentPost.image})` }}
+      style={{ backgroundImage: `url(${mostRecentPost.imagePath})` }}
     >
       <img
         style={{ display: "none" }}
-        src={mostRecentPost.image}
+        src={mostRecentPost.imagePath}
         alt={mostRecentPost.title}
       />
       <div className={classes.overlay} />
@@ -81,7 +86,7 @@ const MostRecentPost = () => {
                 {mostRecentPost.description}
               </Typography>
             </div>
-            <Link variant="subtitle1" href={mostRecentPost.url}>
+            <Link variant="subtitle1" href={"#"}>
               继续阅读
             </Link>
           </div>
