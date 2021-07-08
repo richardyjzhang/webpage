@@ -46,30 +46,23 @@ const MostRecentPost = () => {
 
   const posts = useContext(PostContext);
 
-  // const mostRecentPost: Post = {
-  //   title: "文章标题 可以比较长 测试换行",
-  //   description:
-  //     "文章描述 可以比较长 测试换行 感觉自己好像梁朝伟在演无间道 捂住脑门晃动你的胯骨轴 好像有事在发愁 Lei jidou ma",
-  //   author: "宝石GEM",
-  //   time: "2021-01-02 03:04:05",
-  //   image: "https://source.unsplash.com/random",
-  //   url: "#",
-  // };
-
   if (posts.length === 0) {
     return null;
   }
 
   const mostRecentPost = posts[0];
+  const imgPath = `${baseURL}/image?path=${mostRecentPost.imagePath}`;
 
   return (
     <Paper
       className={classes.root}
-      style={{ backgroundImage: `url(${mostRecentPost.imagePath})` }}
+      style={{
+        backgroundImage: `url(${imgPath})`,
+      }}
     >
       <img
         style={{ display: "none" }}
-        src={`${baseURL}/image?path=${mostRecentPost.imagePath}`}
+        src={imgPath}
         alt={mostRecentPost.title}
       />
       <div className={classes.overlay} />
