@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import { Typography, Link, Paper, Grid } from "@material-ui/core";
+import baseURL from "utils/baseURL";
 import { PostContext } from "./index";
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -55,6 +56,10 @@ const MostRecentPost = () => {
   //   url: "#",
   // };
 
+  if (posts.length === 0) {
+    return null;
+  }
+
   const mostRecentPost = posts[0];
 
   return (
@@ -64,7 +69,7 @@ const MostRecentPost = () => {
     >
       <img
         style={{ display: "none" }}
-        src={mostRecentPost.imagePath}
+        src={`${baseURL}/image?path=${mostRecentPost.imagePath}`}
         alt={mostRecentPost.title}
       />
       <div className={classes.overlay} />
