@@ -24,10 +24,10 @@ const BlogPage = () => {
             {/* TODO: order by time desc */}
             <Grid container spacing={4}>
               <Grid item xs={12} md={6}>
-                <RecentPost />
+                <RecentPost order={1} />
               </Grid>
               <Grid item xs={12} md={6}>
-                <RecentPost />
+                <RecentPost order={2} />
               </Grid>
             </Grid>
             <Grid container spacing={5}>

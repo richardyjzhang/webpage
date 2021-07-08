@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
   Card,
   CardActionArea,
@@ -9,6 +9,8 @@ import {
   CardMedia,
 } from "@material-ui/core";
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
+import baseURL from "utils/baseURL";
+import { PostContext } from "./index";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -21,19 +23,30 @@ const useStyles = makeStyles((theme: Theme) =>
     media: {
       width: 160,
     },
+    description: {
+      overflow: "hidden",
+      textOverflow: "ellipsis",
+      whiteSpace: "nowrap",
+    },
   })
 );
 
-const RecentPost = () => {
+interface RecentPostProp {
+  order: number;
+}
+
+const RecentPost: React.FC<RecentPostProp> = (props) => {
   const classes = useStyles();
 
-  const post: Post = {
-    title: "文章标题",
-    description: "文章描述",
-    author: "作者",
-    createTime: "2006-01-02 15:04:05",
-    imagePath: "https://source.unsplash.com/random",
-  };
+  const { order } = props;
+
+  const posts = useContext(PostContext);
+  if (posts.length < order + 1) {
+    return null;
+  }
+
+  const post = posts[order];
+  const imgPath = `${baseURL}/image?path=${post.imagePath}`;
 
   return (
     <CardActionArea href="#">
@@ -46,7 +59,11 @@ const RecentPost = () => {
             <Typography variant="subtitle1" color="textSecondary">
               {post.createTime}
             </Typography>
-            <Typography variant="subtitle1" paragraph>
+            <Typography
+              className={classes.description}
+              variant="subtitle1"
+              paragraph
+            >
               {post.description}
             </Typography>
             <Link variant="subtitle1" href={"#"}>
@@ -57,7 +74,7 @@ const RecentPost = () => {
         <Hidden xsDown>
           <CardMedia
             className={classes.media}
-            image={post.imagePath}
+            image={imgPath}
             title={post.title}
           />
         </Hidden>
