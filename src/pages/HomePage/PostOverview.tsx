@@ -38,6 +38,16 @@ const useStyles = makeStyles((theme: Theme) =>
       transform: "translate(-50%)",
       cursor: "pointer",
     },
+    mdH2: {
+      fontWeight: "normal",
+    },
+    mdH3: {
+      fontWeight: "normal",
+    },
+    mdCode: {
+      backgroundColor: theme.palette.grey[200],
+      whiteSpace: "pre-wrap",
+    },
   })
 );
 
@@ -70,7 +80,30 @@ const PostOverview: React.FC<PostProp> = (props) => {
       <div
         className={clsx(classes.content, { [classes.contentMasked]: overview })}
       >
-        <ReactMarkdown>{content || ""}</ReactMarkdown>
+        <ReactMarkdown
+          options={{
+            overrides: {
+              h2: {
+                props: {
+                  className: classes.mdH2,
+                },
+              },
+              h3: {
+                props: {
+                  className: classes.mdH3,
+                },
+              },
+              code: {
+                component: "p",
+                props: {
+                  className: classes.mdCode,
+                },
+              },
+            },
+          }}
+        >
+          {content || ""}
+        </ReactMarkdown>
       </div>
       {overview ? (
         <Typography
