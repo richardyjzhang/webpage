@@ -1,0 +1,6 @@
+{
+    "dbhost": "localhost",
+    "dbuser": "USER",
+    "dbpass": "PASSWORD",
+    "fileBase": "/PATH/TO/YOUR/FILES/"
+}
