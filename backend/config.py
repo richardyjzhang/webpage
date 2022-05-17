@@ -12,6 +12,7 @@ try:
     dbhost = jsonConfig['dbhost']
     dbuser = jsonConfig['dbuser']
     dbpass = jsonConfig['dbpass']
+    fileBase = jsonConfig['fileBase']
 except KeyError:
     print('config.json error!')
     exit()
