@@ -23,7 +23,9 @@ const useStyles = makeStyles((theme: Theme) =>
       fontWeight: "bold",
     },
     meta: {},
-    description: {},
+    description: {
+      marginTop: theme.spacing(2, 0),
+    },
     content: {
       maxWidth: "100%",
       overflow: "ellipsis",
@@ -31,11 +33,7 @@ const useStyles = makeStyles((theme: Theme) =>
     contentMasked: {
       maskImage: "linear-gradient(white 200px, transparent 300px)",
     },
-    showAll: {
-      position: "absolute",
-      left: "50%",
-      top: 370,
-      transform: "translate(-50%)",
+    readAll: {
       cursor: "pointer",
     },
     mdH2: {
@@ -58,10 +56,14 @@ interface PostProp {
 const PostOverview: React.FC<PostProp> = (props) => {
   const { post } = props;
   const classes = useStyles();
-  const { data: content } = useRequest<string>(_fetchOnePostMD, {
-    initialData: "",
-    defaultParams: post.id,
-  });
+  const { run: fetchOnePostMD, data: content } = useRequest<string>(
+    _fetchOnePostMD,
+    {
+      manual: true,
+      initialData: "",
+      defaultParams: post.id,
+    }
+  );
 
   // overview模式仅展示部分，不展开
   const [overview, setOverview] = useState(true);
@@ -77,46 +79,52 @@ const PostOverview: React.FC<PostProp> = (props) => {
       <Typography className={classes.meta} variant="body2" color="primary">
         {`${post.createTime} By ${post.author}`}
       </Typography>
-      <div
-        className={clsx(classes.content, { [classes.contentMasked]: overview })}
-      >
-        <ReactMarkdown
-          options={{
-            overrides: {
-              h2: {
-                props: {
-                  className: classes.mdH2,
-                },
-              },
-              h3: {
-                props: {
-                  className: classes.mdH3,
-                },
-              },
-              code: {
-                component: "p",
-                props: {
-                  className: classes.mdCode,
-                },
-              },
-            },
-          }}
-        >
-          {content || ""}
-        </ReactMarkdown>
-      </div>
+
       {overview ? (
-        <Typography
-          className={classes.showAll}
-          variant="body1"
-          color="primary"
-          onClick={() => {
-            setOverview(false);
-          }}
-        >
-          阅读全文
-        </Typography>
-      ) : null}
+        <div>
+          <Typography variant="body1" color="textSecondary" className={classes.description}>
+            {post.description}
+          </Typography>
+          <Typography
+            className={classes.readAll}
+            variant="body1"
+            color="primary"
+            onClick={() => {
+              fetchOnePostMD(post.id);
+              setOverview(false);
+            }}
+          >
+            阅读全文
+          </Typography>
+        </div>
+      ) : (
+        <div className={classes.content}>
+          <ReactMarkdown
+            options={{
+              overrides: {
+                h2: {
+                  props: {
+                    className: classes.mdH2,
+                  },
+                },
+                h3: {
+                  props: {
+                    className: classes.mdH3,
+                  },
+                },
+                code: {
+                  component: "p",
+                  props: {
+                    className: classes.mdCode,
+                  },
+                },
+              },
+            }}
+          >
+            {content || ""}
+          </ReactMarkdown>
+        </div>
+      )}
     </Paper>
   );
 };
