@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import { useRequest } from "ahooks";
 import { Paper, Typography } from "@material-ui/core";
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
-import ReactMarkdown from "markdown-to-jsx";
+import ReactMarkdown from "react-markdown";
 import clsx from "clsx";
+import baseURL from "utils/baseURL";
 import { _fetchOnePostMD } from "services/post";
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -100,25 +101,12 @@ const PostOverview: React.FC<PostProp> = (props) => {
       ) : (
         <div className={classes.content}>
           <ReactMarkdown
-            options={{
-              overrides: {
-                h2: {
-                  props: {
-                    className: classes.mdH2,
-                  },
-                },
-                h3: {
-                  props: {
-                    className: classes.mdH3,
-                  },
-                },
-                code: {
-                  component: "p",
-                  props: {
-                    className: classes.mdCode,
-                  },
-                },
-              },
+            transformImageUri={(uri) => {
+              if (uri.startsWith('./')) {
+                const imgPath = `${baseURL}/post-image?postId=${post.id}&path=${uri.substring(2)}`;
+                return imgPath;
+              }
+              return uri;
             }}
           >
             {content || ""}

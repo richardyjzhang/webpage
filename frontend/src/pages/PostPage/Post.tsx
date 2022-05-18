@@ -1,5 +1,5 @@
 import React from "react";
-import ReactMarkdown from "markdown-to-jsx";
+import ReactMarkdown from "react-markdown";
 
 const content = `
 # Sample blog post
