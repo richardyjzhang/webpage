@@ -104,7 +104,7 @@ const Header = () => {
           color="inherit"
           noWrap
         >
-          网站名称
+          福佳白 - 范先生的博客
         </Typography>
         <div className={classes.search}>
           <div className={classes.searchIcon}>
