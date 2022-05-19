@@ -1,4 +1,5 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Response
+from fastapi.responses import FileResponse
 import pymysql
 import config
 import os
@@ -51,3 +52,32 @@ def fetchOnePost(id):
         return ""
     with open(filePath, 'r') as f:
         return f.read()
+
+
+# 获取某个照片
+@app.get("/image")
+def fetchImage(path: str):
+    # 安全性判断
+    if '..' in path:
+        return Response(status_code=403)
+    
+    filePath = config.fileBase + path
+    if not os.path.exists(filePath):
+        return Response(status_code=404)
+
+    return FileResponse(filePath)
+
+
+# 获取某篇文章中的照片
+@app.get("/post-image")
+def fetchPostImage(postId: int, path: str):
+    # 安全性判断
+    if '..' in path:
+        return Response(status_code=403)
+
+    filePath = f'{config.fileBase}/blog/{postId}/{path}'
+    if not os.path.exists(filePath):
+        return Response(status_code=404)
+
+    return FileResponse(filePath)
+    
