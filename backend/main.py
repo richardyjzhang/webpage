@@ -11,9 +11,19 @@ app = FastAPI()
 conn = pymysql.connect(host=config.dbhost, user=config.dbuser, password=config.dbpass, db='website')
 
 
+# 检查MySQL连接
+def _checkMySQLConnection():
+    try:
+        conn.ping()
+        return True
+    except Exception as e:
+        return False
+
+
 # 获取文章列表
 @app.get("/posts")
 def fetchPosts():
+    _checkMySQLConnection()
     with conn.cursor() as cursor:
         sql = 'SELECT p.id, p.title, p.description, u.name, p.createTime, p.imagePath FROM post p ' \
                 '  LEFT JOIN web_user u ON p.authorId = u.id ORDER BY p.createTime DESC'
@@ -37,8 +47,10 @@ def fetchPosts():
 # 获取单个文章MarkDown内容
 @app.get("/post-content/{id}")
 def fetchOnePost(id):
+    
     sql = f'SELECT path FROM post WHERE id = {id}'
 
+    _checkMySQLConnection()
     with conn.cursor() as cursor:
         cursor.execute(sql)
         row = cursor.fetchone()
