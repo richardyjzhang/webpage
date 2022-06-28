@@ -3,6 +3,8 @@ import { useRequest } from "ahooks";
 import { Paper, Typography } from "@material-ui/core";
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 import ReactMarkdown from "react-markdown";
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { okaidia } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import clsx from "clsx";
 import baseURL from "utils/baseURL";
 import { _fetchOnePostMD } from "services/post";
@@ -107,6 +109,25 @@ const PostOverview: React.FC<PostProp> = (props) => {
                 return imgPath;
               }
               return uri;
+            }}
+            components={{
+              code({node, inline, className, children, ...props}) {
+                const match = /language-(\w+)/.exec(className || '')
+                return !inline && match ? (
+                  <SyntaxHighlighter
+                    children={String(children).replace(/\n$/, '')}
+                    style={okaidia}
+                    language={match[1]}
+                    PreTag="div"
+                    showLineNumbers
+                    {...props}
+                  />
+                ) : (
+                  <code className={className} {...props}>
+                    {children}
+                  </code>
+                )
+              }
             }}
           >
             {content || ""}
