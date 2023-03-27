@@ -87,7 +87,23 @@ def fetchPostImage(postId: int, path: str):
     if '..' in path:
         return Response(status_code=403)
 
-    filePath = f'{config.fileBase}/blog/{postId}/{path}'
+    # 查找文章所在路径
+    sql = f'SELECT path FROM post WHERE id = {postId}'
+
+    _checkMySQLConnection()
+    with conn.cursor() as cursor:
+        cursor.execute(sql)
+        row = cursor.fetchone()
+    if row == None:
+        print(f'没有找到id为{id}的文章')
+        return Response(status_code=404)
+    filePath = config.fileBase + row[0]
+    if not os.path.exists(filePath):
+        return Response(status_code=404)
+
+    # 在文章所在路径下查找照片
+    dirName = os.path.dirname(os.path.abspath(filePath))
+    filePath = os.path.join(dirName, path)
     if not os.path.exists(filePath):
         return Response(status_code=404)
 
