@@ -8,7 +8,11 @@ app = FastAPI()
 
 
 # MySQL 连接信息
-conn = pymysql.connect(host=config.dbhost, user=config.dbuser, password=config.dbpass, db='website')
+conn = pymysql.connect(host=config.dbhost,
+                       user=config.dbuser,
+                       password=config.dbpass,
+                       db='website',
+                       autocommit=True)
 
 
 # 检查MySQL连接
@@ -26,7 +30,7 @@ def fetchPosts():
     _checkMySQLConnection()
     with conn.cursor() as cursor:
         sql = 'SELECT p.id, p.title, p.description, u.name, p.createTime, p.imagePath FROM post p ' \
-                '  LEFT JOIN web_user u ON p.authorId = u.id ORDER BY p.createTime DESC'
+            '  LEFT JOIN web_user u ON p.authorId = u.id ORDER BY p.createTime DESC'
         cursor.execute(sql)
         rows = cursor.fetchall()
 
@@ -47,7 +51,7 @@ def fetchPosts():
 # 获取单个文章MarkDown内容
 @app.get("/post-content/{id}")
 def fetchOnePost(id):
-    
+
     sql = f'SELECT path FROM post WHERE id = {id}'
 
     _checkMySQLConnection()
@@ -72,7 +76,7 @@ def fetchImage(path: str):
     # 安全性判断
     if '..' in path:
         return Response(status_code=403)
-    
+
     filePath = config.fileBase + path
     if not os.path.exists(filePath):
         return Response(status_code=404)
@@ -108,4 +112,3 @@ def fetchPostImage(postId: int, path: str):
         return Response(status_code=404)
 
     return FileResponse(filePath)
-    
